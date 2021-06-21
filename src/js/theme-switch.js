@@ -23,4 +23,3 @@ const changeInputHandler = event => {
 };
 
 inputSwitchEl.addEventListener('change', changeInputHandler);
-//
