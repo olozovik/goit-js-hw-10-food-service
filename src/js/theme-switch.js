@@ -10,17 +10,29 @@ if (localStorage.getItem('theme') === 'dark') {
   inputSwitchEl.checked = true;
 }
 
-const changeInputHandler = event => {
-  if (inputSwitchEl.checked) {
+const changeThemeClassBody = () => {
+  if (document.body.classList.contains(Theme.LIGHT)) {
     document.body.classList.remove(Theme.LIGHT);
     document.body.classList.add(Theme.DARK);
     localStorage.setItem('theme', 'dark');
-  } else {
+    return;
+  }
+  if (document.body.classList.contains(Theme.DARK)) {
     document.body.classList.remove(Theme.DARK);
     document.body.classList.add(Theme.LIGHT);
     localStorage.setItem('theme', 'light');
+    return;
+  }
+  document.body.classList.add(Theme.DARK);
+  localStorage.setItem('theme', 'dark');
+};
+
+const changeInputHandler = event => {
+  if (inputSwitchEl.checked) {
+    changeThemeClassBody();
+  } else {
+    changeThemeClassBody();
   }
 };
 
 inputSwitchEl.addEventListener('change', changeInputHandler);
-//
